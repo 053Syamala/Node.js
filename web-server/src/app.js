@@ -7,7 +7,11 @@ app.get('',(req,res)=>{
 })
 
 app.get('/help',(req,res)=>{
-    res.send('Help page')
+    res.send([{
+        name:'Syamalaaa'
+    },{
+        name:'Devi'
+    }])
 })
 
 app.get('/about',(req,res)=>{
@@ -15,7 +19,10 @@ app.get('/about',(req,res)=>{
 })
 
 app.get('/weather',(req,res)=>{
-    res.send('weather page')
+    res.send({
+        forecast:'it is snowing',
+        location:'Philadelphia'
+    })
 })
 
 app.listen(3000,()=>{
