@@ -15,7 +15,7 @@ const product={
 }
 //const {lable:productLable,price}=product
 
-const transaction=(type,{lable,stock})=>{
+const transaction=(type,{lable,stock=0}={})=>{
     console.log(type,lable,stock)
 }
-transaction('order',product)
+transaction('order')
