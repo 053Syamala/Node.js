@@ -28,9 +28,16 @@ app.get('',(req,res)=>{
 })
 
 app.get('/weather',(req,res)=>{
+    if(!req.query.address){
+        return res.send({
+            error:'You must provide an address!'
+        })
+
+    }
     res.send({
         forecast:'it is snowing',
-        location:'Philadelphia'
+        location:'Philadelphia',
+        address:req.query.address
     })
 })
 app.get('/help',(req,res)=>{
@@ -44,6 +51,17 @@ app.get('/about',(req,res)=>{
     res.render('about',{
         title:'About me',
         name:'me'
+    })
+})
+app.get('/products',(req,res)=>{
+    if(!req.query.search){
+        return res.send({
+            error:'You must provide a search term'
+        })
+    }
+    console.log(req.query)
+    res.send({
+        products:[]
     })
 })
 app.get('/help/*',(req,res)=>{
@@ -60,6 +78,7 @@ app.get('*',(req,res)=>{
         errorMessage:'page not found'
     })
 })
+
 app.listen(3000,()=>{
     console.log('Server is up on 3000')
 })
