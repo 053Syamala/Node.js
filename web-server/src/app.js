@@ -46,6 +46,20 @@ app.get('/about',(req,res)=>{
         name:'me'
     })
 })
+app.get('/help/*',(req,res)=>{
+    res.render('404',{
+        title:'404',
+        name:'syamala',
+        errorMessage:'help page not found'
+    })
+})
+app.get('*',(req,res)=>{
+    res.render('404',{
+        title:'404',
+        name:'syamala',
+        errorMessage:'page not found'
+    })
+})
 app.listen(3000,()=>{
     console.log('Server is up on 3000')
 })
