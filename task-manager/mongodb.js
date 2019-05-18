@@ -5,26 +5,31 @@ const connectionURL='mongodb://127.0.0.1:27017'
 const databaseName='task-manager'
 
 const id=new ObjectID()
-console.log(id)
+//console.log(id)
 
 MongoClient.connect(connectionURL,{useNewUrlParser:true},(error,client)=>{
     if(error){
         return console.log('unable to connect to server')
     }
-    console.log('connected correctly')
+    
     const db=client.db(databaseName)
-    db.collection('users').insertMany([
-        {
-            _id:id,
-            name:'name1',
-            age:10
-        }
-    ],(error,result)=>{
+    db.collection('users').findOne({name:'syamala'},(error,user)=>{
         if(error){
-            return console.log('Unable to insert documents')
+            console.log('unable to find')
         }
-        console.log(result.ops)
-
+        console.log(user)
+    })
+    db.collection('users').find({age:10}).toArray((error,user)=>{
+        if(error){
+            console.log('unable to find')
+        }
+        console.log(user)
+    })
+    db.collection('users').find({age:10}).count((error,user)=>{
+        if(error){
+            console.log('unable to find')
+        }
+        console.log(user)
     })
     /*db.collection('tasks').insertMany([
         {
