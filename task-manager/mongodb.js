@@ -13,43 +13,16 @@ MongoClient.connect(connectionURL,{useNewUrlParser:true},(error,client)=>{
     }
     
     const db=client.db(databaseName)
-    db.collection('users').findOne({name:'syamala'},(error,user)=>{
-        if(error){
-            console.log('unable to find')
+    const updatePromise=db.collection('users').updateOne({
+        _id:new ObjectID("5ce05d0c4689981318164afe")
+    },{
+        $set:{
+            name:'Devi'
         }
-        console.log(user)
     })
-    db.collection('users').find({age:10}).toArray((error,user)=>{
-        if(error){
-            console.log('unable to find')
-        }
-        console.log(user)
+    updatePromise.then((result)=>{
+        console.log(result)
+    }).catch((error)=>{
+        console.log(error)
     })
-    db.collection('users').find({age:10}).count((error,user)=>{
-        if(error){
-            console.log('unable to find')
-        }
-        console.log(user)
-    })
-    /*db.collection('tasks').insertMany([
-        {
-            description:'clean the house',
-            completed:true
-        },
-        {
-            description:'Renew inspection',
-            completed:false
-        }, {
-            description:'Pot plants',
-            completed:false
-        }, {
-            description:'clean the room',
-            completed:true
-        }
-    ],(error,result)=>{
-        if(error){
-            return console.log("Unable to insert data")
-        }
-        console.log(result.ops)
-    })*/
 })
