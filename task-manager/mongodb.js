@@ -13,7 +13,7 @@ MongoClient.connect(connectionURL,{useNewUrlParser:true},(error,client)=>{
     }
     
     const db=client.db(databaseName)
-    const updatePromise=db.collection('users').updateOne({
+    /*const updatePromise=db.collection('users').updateOne({
         _id:new ObjectID("5ce05d0c4689981318164afe")
     },{
         $set:{
@@ -22,6 +22,17 @@ MongoClient.connect(connectionURL,{useNewUrlParser:true},(error,client)=>{
     })
     updatePromise.then((result)=>{
         console.log(result)
+    }).catch((error)=>{
+        console.log(error)
+    })*/
+    db.collection('tasks').updateMany({
+        completed:false
+    },{
+        $set:{
+            completed:true
+        }
+    }).then((result)=>{
+        console.log(result.modifiedCount)
     }).catch((error)=>{
         console.log(error)
     })
