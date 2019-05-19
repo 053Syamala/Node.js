@@ -25,7 +25,7 @@ MongoClient.connect(connectionURL,{useNewUrlParser:true},(error,client)=>{
     }).catch((error)=>{
         console.log(error)
     })*/
-    db.collection('tasks').updateMany({
+    /*db.collection('tasks').updateMany({
         completed:false
     },{
         $set:{
@@ -33,6 +33,13 @@ MongoClient.connect(connectionURL,{useNewUrlParser:true},(error,client)=>{
         }
     }).then((result)=>{
         console.log(result.modifiedCount)
+    }).catch((error)=>{
+        console.log(error)
+    })*/
+    db.collection('users').deleteMany({
+        age:11
+    }).then((result)=>{
+        console.log(result)
     }).catch((error)=>{
         console.log(error)
     })
